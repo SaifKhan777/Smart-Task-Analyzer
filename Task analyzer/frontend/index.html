@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Smart Task Analyzer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Smart Task Analyzer</h1>
+
+    <section class="input-section">
+      <h2>Add Task</h2>
+      <form id="task-form">
+        <label>Title: <input type="text" id="title" required /></label>
+        <label>Due Date: <input type="date" id="due_date" /></label>
+        <label>Estimated Hours: <input type="number" step="0.1" id="estimated_hours" value="1" /></label>
+        <label>Importance (1-10): <input type="number" min="1" max="10" id="importance" value="5" /></label>
+        <label>Dependencies (comma IDs): <input type="text" id="dependencies" placeholder="e.g. 2,3" /></label>
+        <button id="add-task" type="button">Add To List</button>
+      </form>
+
+      <h3>Bulk JSON (paste array of tasks)</h3>
+      <textarea id="bulk-json" placeholder='[{"title":"T","due_date":"2025-12-01","estimated_hours":2,"importance":7,"dependencies": []}]'></textarea>
+      <div class="row">
+        <label>Strategy:
+          <select id="strategy">
+            <option value="smart">Smart Balance</option>
+            <option value="fastest">Fastest Wins</option>
+            <option value="impact">High Impact</option>
+            <option value="deadline">Deadline Driven</option>
+          </select>
+        </label>
+        <button id="analyze" type="button">Analyze Tasks</button>
+      </div>
+    </section>
+
+    <section class="list-section">
+      <h2>Task Queue</h2>
+      <div id="task-list-empty" class="muted">No tasks added yet.</div>
+      <ol id="task-list"></ol>
+      <div id="api-output"></div>
+    </section>
+
+    <section class="results-section">
+      <h2>Results</h2>
+      <div id="results"></div>
+      <h3>Top Suggestions</h3>
+      <div id="suggestions"></div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
