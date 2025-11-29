@@ -41,7 +41,7 @@ task_analyzer/
 
 ---
 
-# 🧪 **Setup Instructions**
+# 🧪 Setup Instructions
 
 ### 1️⃣ Create and activate a virtual environment
 
@@ -82,7 +82,7 @@ Open in browser:
 
 ---
 
-# 🧪 **Test API**
+# 🧪 Test API
 
 ### Analyze Tasks
 
@@ -114,11 +114,11 @@ Optional query parameter: `?n=3` (default 3 tasks)
 
 ---
 
-# 🧮 **Algorithm Explanation (350–400 words)**
+# 🧮 Algorithm Explanation (350–400 words)
 
 The Task Analyzer implements a weighted multi-factor scoring algorithm to intelligently prioritize tasks. Each task is evaluated across four dimensions: **urgency**, **importance**, **effort**, and **dependencies**.
 
-**Urgency** is computed based on the task’s due date. Tasks closer to their deadline receive higher urgency scores, while overdue tasks receive maximum urgency, ensuring that time-sensitive items are appropriately prioritized.
+**Urgency** is computed based on the task’s due date. Tasks closer to their deadline receive higher urgency scores, while overdue tasks receive maximum urgency, ensuring time-sensitive items are appropriately prioritized.
 
 **Importance** leverages the user-provided rating (1–10), normalized to a percentage scale. High-impact tasks are therefore favored, even if they are not immediately due.
 
@@ -135,17 +135,44 @@ These four factors are combined into a **weighted aggregate score**:
 
 The resulting **final score** represents a task’s overall priority. Each task also includes a **reasoning explanation** (e.g., “Due today”, “High importance”, “Blocks 2 tasks”) for transparency.
 
-For suggestions, tasks are sorted by descending scores, and the top N tasks are returned as actionable recommendations. This modular design separates scoring, REST endpoints, and frontend display, ensuring maintainability and flexibility. Optional user-defined weights and strategy selections allow further customization.
+For suggestions, tasks are sorted by descending scores, and the top N tasks are returned as actionable recommendations. Optional user-defined weights and strategy selections allow further customization.
 
 By combining deadline awareness, task significance, time-to-complete, and relational dependencies, this algorithm helps users make smart decisions, maximize productivity, and reduce project bottlenecks.
 
 ---
 
-# ✅ **Assignment Status: COMPLETE**
+# ⚙️ Design Decisions
 
-* Backend fully implemented and tested
-* Frontend fully implemented with working API calls
-* CORS configured for cross-origin requests
-* Algorithm explained (350–400 words)
-* Setup and test instructions added
-* Ready for submission
+* **In-memory caching** for last analyzed tasks instead of database storage to simplify assignment scope.
+* **Weights configurable** to allow flexible scoring strategies (“Fastest Wins”, “High Impact”, “Deadline Driven”, “Smart Balance”).
+* **Error handling** for missing data, past-due tasks, and circular dependencies.
+* **Frontend simplicity** using vanilla JS for fast integration with REST API.
+
+---
+
+# ⏱️ Time Breakdown
+
+* Backend API development — 2 hours
+* Task scoring algorithm design & implementation — 1 hour
+* Frontend development (HTML/CSS/JS) — 1.5 hours
+* Testing and bug fixes — 0.5 hours
+* README & documentation — 0.5 hours
+
+---
+
+# 🎯 Bonus Challenges
+
+* Circular dependency detection implemented
+* Algorithm configurable with custom weights
+
+*Not attempted:* Dependency graph visualization, Eisenhower matrix, learning system, date intelligence.
+
+---
+
+# 🚀 Future Improvements
+
+* Add persistent database storage for tasks
+* Include user authentication for multi-user support
+* Visual dependency graph and interactive task timeline
+* Learning-based priority adjustment using user feedback
+* Enhanced frontend UI with drag-and-drop task ordering
